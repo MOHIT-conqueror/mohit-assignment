@@ -1,0 +1,203 @@
+//*
+#include <stdio.h>
+
+int main() {
+
+	int A[10][10];
+	int i, j, R, C, flag =1;
+	printf("Enter the order of the matrix A\n");
+	scanf("%d %d", &R, &C);
+	printf("Enter the elements of matrix A\n");
+	for (i=0; i<R; i++) {
+
+		for (j=0; j<C; j++) {
+
+			scanf("%d",&A[i][j]);
+
+		}
+
+	}
+
+	printf("MATRIX A is\n");
+	for (i=0; i<R; i++) {
+		for (j=0; j<C; j++) {
+			printf("%3d",A[i][j]);
+		}
+		printf("\n");
+	}
+	/* Check for unit (or identity) matrix */
+	for (i=0; i<R; i++) {
+		for (j=0; j<C; j++) {
+			if((A[i][i] != 1) || (( i != j) && (A[i][j] != 0))) {
+				flag = 0;
+				break;
+			}
+		}
+	}
+	if(flag == 1 )
+	  printf("It is identity matrix\n"); else
+	  printf("It is not a identity matrix\n");
+      return 0;
+
+}
+ 33 changes: 33 additions & 0 deletions33  
+q13.c
+*//
+@@ -0,0 +1,33 @@
+    #include <stdio.h>
+    int  main ()
+    {
+
+        static int array[10][10];
+        int i, j, m, n, sum = 0;
+
+        printf("Enter the order of the matrix\n");
+        scanf("%d %d", &m, &n);
+
+        printf("Enter the co-efficients of the matrix\n");
+        for (i = 0; i < m; ++i)
+        {
+            for (j = 0; j < n; ++j) 
+            {
+                scanf("%d", &array[i][j]);
+            }
+        }
+
+        for (i = 0; i < m; ++i) 
+        {
+            for (j = 0; j < n; ++j) 
+            {
+                sum = sum + array[i][j] ;
+            }
+
+            printf("Sum of the %d row is = %d\n", i, sum);
+            sum = 0;
+
+        }
+     return 0;
+
+    }
+ 21 changes: 21 additions & 0 deletions21  
+q14.c
+@@ -0,0 +1,21 @@
+// Tower of Hanoi program in C using Recursion
+void toH(int n, char rodA, char rodC, char rodB)
+{
+	if (n == 1)
+	{
+		printf("\n Move disk 1 from rod %c to rod %c",rodA ,rodC );
+		return;
+	}
+	toH(n-1, rodA, rodB, rodC);
+	printf("\n Move disk %d from rod %c to rod %c", n, rodA, rodC);
+	toH(n-1, rodB, rodC,rodA);
+}
+
+int main()
+{
+	int no_of_disks ;
+	printf("Enter number of disks: ");
+	scanf("%d", &no_of_disks);
+	toH(no_of_disks, 'A','C','B'); 
+	return 0;
+}
+ 23 changes: 23 additions & 0 deletions23  
+q15.c
+@@ -0,0 +1,23 @@
+#include <stdio.h>
+
+int fibonacci(int n) {
+    if (n <= 1)
+        return n;
+    else
+        return (fibonacci(n - 1) + fibonacci(n - 2));
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of Fibonacci numbers to generate: ");
+    scanf("%d", &n);
+
+    printf("Fibonacci Series: ");
+
+    for (int i = 0; i < n; i++) {
+        printf("%d, ", fibonacci(i));
+    }
+
+    return 0;
+}
+ 16 changes: 16 additions & 0 deletions16  
+q16.c
+@@ -0,0 +1,16 @@
+#include <stdio.h>
+int hcf(int n1, int n2);
+int main() {
+    int n1, n2;
+    printf("Enter two positive integers: ");
+    scanf("%d %d", &n1, &n2);
+    printf("G.C.D of %d and %d is %d.", n1, n2, hcf(n1, n2));
+    return 0;
+}
+
+int hcf(int n1, int n2) {
+    if (n2 != 0)
+        return hcf(n2, n1 % n2);
+    else
+        return n1;
+}
+ 26 changes: 26 additions & 0 deletions26  
+q17.c
+@@ -0,0 +1,26 @@
+#include <stdio.h>
+
+int sum (int a);
+
+int main()
+{
+    int num, result;
+
+    printf("Enter the number: ");
+    scanf("%d", &num);
+    result = sum(num);
+    printf("Sum of digits in %d is %d\n", num, result);
+    return 0;
+}
+
+int sum (int num)
+{
+    if (num != 0)
+    {
+        return (num % 10 + sum (num / 10));
+    }
+    else
+    {
+       return 0;
+    }
+}
+ 23 changes: 23 additions & 0 deletions23  
+q18.c
+@@ -0,0 +1,23 @@
+#include<stdio.h>
+
+int reverse(int , int );
+
+int main()
+{
+    int number, result;
+    printf("Enter number: ");
+    scanf("%d", &number);
+    /* Second argument must be 0 while calling function */
+    result = reverse(number, 0);
+
+    printf("Reverse of %d is %d.", number, result);
+    return 0;
+}
+
+int reverse(int num, int rev)
+{
+    if(num==0)
+        return rev;
+    else
+        return reverse (num/10, rev*10 + num%10);
+}
